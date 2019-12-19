@@ -1,0 +1,75 @@
+Lesson 2 
+
+En todo el curso usaremos la herramienta OpenVino  la cual es gratuita y desarrollada por intel. 
+Openvino  significa "open visual inferencing and neural network optimization". 
+Open vino es compatible con diferentes frameworks like tensor flow, pytorch, caffe, etc. 
+La herramienta se enfoca en optimizar la inferencia de los modelos en los distintos dispositivos lo cual aumena la velocidad de procesamiento de los mismos, otra ventaja es que openvino se puede correr en la nube facilitando el procesamiento de los modelos esto no quiere decir que mejorara el accuracy "mejorar el accuracy se hace en la etapa de entrenamiento".
+En resumen openvino es un sofware en la nube que agarra los modelos y hace una version mas pequeña de los mismos esto es fundamental en iot ya que los dispositivos usados no cuenta con el procesamiento de multiples gpu o spacio de memoria suficiente.
+
+Computer vision models: 
+
+Existen diversos tipos de modelos pero analizaremos los 3 mas importantes: Clasification, detection, segmentation.
+
+	Clasification: 
+		Determina a que categoria pertenece la imagen la misma que pertenece a un set de multiples categorias. Esto esta basado un poco en que 			cada imagen tiene una probabilidad de pertener a una clase, la clase a la que pertenece seria la probabilidad mas alta.
+
+	Detection: 
+		Determina en que parte de la imagen el objeto clasificado previamente se encuentra normalmenre se utilizan bounding boxes alrededor de 			los objetos detectados. 
+
+	Segmentation: 
+		Determina secciones de interes en la imagen clasificando cada pixel de la imagen y determinando si pertenece a una seccion o a otra, 			existen dos tipos de segmentation: Semantic segmentation and instance segmentation. La primera determina las secciones por clase es la 			mas general mientras que la segunda crea como secciones a las diferentes instancias de una misma clase.
+
+PRE-TRAINED MODELS: SSD, ResNet y MobilNet
+	SSD:
+		(Single Shot Multibox Detector)es una arquitectura que combina classfication with object detection, la clasificacion la realiza en 			diferentes capas convolucionales.
+
+	Resnet: 
+		Utiliza capas reaiduales con el fin de saltar entre secciones de capas, disminuyendo  carga en el computo del gradiente descendiente.
+
+	MobilNet: 
+		Utiliza filtros 1x1 en las convoluciones cortando la complejidad computacional y el tamaño de la red fast inference-less accuracy.
+
+	Para revisar mas informacion sobre estas estructuras pueden visitar los siguientes papers:
+	
+
+NOTA1: Se puede disminuir el problema del gradiente descendiente normalizando las entradas.
+
+
+PRECISION:
+
+Precisions are related to floating point values, menor precision implica menor consumo de memoria y recursos por parte del modelo  pero 	tambien menor accuracy.
+La idea principal de disminuir la precision y aumentar la eficiencia es combinando multiples capas en una.
+
+
+
+NOTA2: Una buena libreria para manipular imagenes en deeplearning es opencv la cual usa el canal de colores BGR no RGB la razon principal de cambiar el canal es mas por viejas costumbres que entre otras cosas.
+
+
+PRE-PROCESSING IMAGES:
+Si usamos modelos pre-entrenados debemos revisar el canal con el que el modelo se entreno y respetarlo antes de pasarle una imagen, la 	entrada debe pasar por estos parametros: Color Channel, Images resizing, Normalization
+
+	Color channel: 
+		Chequear que el canal de entrada coincida con el canal del modelo.
+
+	Images resizing: 
+		Reajustar el tamaño de las imagenes ayuda a que todas las imagenes tengan el mismo tamaño por ende se optimizan los procesos dentro de 			la red.
+
+	Normalization: 
+		Usar una media y una desviacion adecuada mejora la calidad y rapidez del aprendizaje.
+
+
+
+NOTA3:
+Import cv2 #importando OpenCV
+cv2.imread() #leer una imagen usando imread() metodo de la libreria OpenCV, el formato de la imagen es BGR
+cv2.resize() #ancho, largo
+En arrays el reshape es (fila, columna) lo equivalente a (largo, ancho) como vemos el resize en OpenCV es (ancho, largo) NO CONFUNDIR
+
+
+
+
+
+
+
+
+
